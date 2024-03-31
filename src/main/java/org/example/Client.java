@@ -9,13 +9,13 @@ import java.net.Socket;
 public class Client {
 
     public static void main(String[] args) throws IOException {
-
-        try (Socket clientSocket = new Socket("localhost", Main.PORT);
+        try (Socket clientSocket = new Socket("localhost", MainServer.PORT);
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
             out.println("Den");
-            String resp = in.readLine();
-            System.out.println(resp);
+            System.out.println(in.readLine());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
